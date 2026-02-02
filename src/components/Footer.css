@@ -1,0 +1,28 @@
+.footer-socials a {
+  font-size: 1.2rem;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.footer-socials a:hover {
+  opacity: 0.75;
+  transform: translateY(-2px);
+}
+
+/* Footer bottom full-width border + spacing */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Container brenda bottom */
+.footer-bottom-content {
+  padding: 1.5rem 0;  /* më shumë hapësirë lart-poshtë */
+  line-height: 1.6;   /* bën tekstin më të ajrosur */
+}
+
+/* Opsionale: responsive spacing */
+@media (max-width: 767px) {
+  .footer-bottom-content .d-flex {
+    text-align: center; /* centron tekstin në mobile */
+  }
+}
+

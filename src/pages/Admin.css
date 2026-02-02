@@ -1,0 +1,46 @@
+.dashboard-hero {
+  padding: 34px 0;
+  background: #000;
+}
+
+.dashboard-hero h1 {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.dashboard-content {
+  padding: 40px 0;
+}
+
+.nav-pills .nav-link {
+  color: #555;
+  background: transparent;
+}
+
+.nav-pills .nav-link.active {
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #ddd;
+}
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.status-published {
+  background-color: #dcfce7;
+  color: #15803d;
+}
+
+.status-draft {
+  background-color: #f3f4f6;
+  color: #6b7280;
+}
