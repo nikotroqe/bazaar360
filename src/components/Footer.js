@@ -83,7 +83,7 @@ const Footer = () => {
 
             <div className="d-flex gap-3 mt-2 footer-socials">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/bashkia.tirane.al/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-light"
@@ -93,7 +93,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://twitter.com"
+                href="https://x.com/CityOfTirana"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-light"
@@ -103,7 +103,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/bashkiatirane/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-light"
@@ -113,7 +113,7 @@ const Footer = () => {
               </a>
 
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/bashkia-tirane/?originalSubdomain=al"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-light"
