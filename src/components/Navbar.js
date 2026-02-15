@@ -40,10 +40,7 @@ const Navbar = () => {
 
           <form className="d-flex mx-3 mb-2 mb-lg-0" role="search">
             <input
-              className="form-control form-control-sm me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
+              className="form-control form-control-sm me-2" type="search" placeholder="Search" aria-label="Search"
             />
             <button className="btn btn-outline-primary btn-sm" type="submit">Search</button>
           </form>
