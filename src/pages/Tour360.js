@@ -4,6 +4,9 @@ import "./Tour360.css";
 const Tour360 = () => {
   const [activeLocation, setActiveLocation] = useState("Main Square");
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const viewerRef = useRef(null);
 
   const hotspots = [
@@ -12,38 +15,72 @@ const Tour360 = () => {
   ];
 
   const locations = [
-    { title: "Main Square", points: 12, img: "https://images.unsplash.com/photo-1728733287961-570ecea608bf?q=80&w=1400" },
-    { title: "Artisan Corner", points: 8, img: "https://images.unsplash.com/photo-1762999851391-9113591f49ed?q=80&w=1400" },
-    { title: "Central Plaza", points: 15, img: "https://images.unsplash.com/photo-1719861033127-00b5346c4215?q=80&w=1400" },
+    { 
+      title: "Main Square", 
+      points: 12, 
+      img: "https://images.unsplash.com/photo-1728733287961-570ecea608bf?q=80&w=1400",
+      description: "The vibrant heart of Pazari i Ri, where local vendors showcase fresh produce and traditional goods."
+    },
+    { 
+      title: "Artisan Corner", 
+      points: 8, 
+      img: "https://images.unsplash.com/photo-1762999851391-9113591f49ed?q=80&w=1400",
+      description: "Discover handcrafted goods and traditional Albanian artisanship in this cozy market section."
+    },
+    { 
+      title: "Central Plaza", 
+      points: 15, 
+      img: "https://images.unsplash.com/photo-1719861033127-00b5346c4215?q=80&w=1400",
+      description: "A bustling meeting point surrounded by cafes, restaurants, and cultural landmarks."
+    },
   ];
 
-  const handleHotspotClick = (title) => {
-    alert(title);
-  };
+  const handleHotspotClick = (title) => alert(title);
 
   const handleLocationClick = (title) => {
     setActiveLocation(title);
-    setZoomLevel(1); // reset zoom kur ndryshon location
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
   };
 
-  // Funksionet e zoom dhe fullscreen
-  const zoomIn = () => {
-    if (zoomLevel < 3) setZoomLevel(prev => prev + 0.2);
+  // Drag functions: lejo drag vetem kur zoom > 1
+  const handleMouseDown = (e) => {
+    if (zoomLevel <= 1) return;
+    setDragging(true);
+    setStartPos({ x: e.clientX - position.x, y: e.clientY - position.y });
   };
 
-  const zoomOut = () => {
-    if (zoomLevel > 1) setZoomLevel(prev => prev - 0.2);
+  const handleMouseMove = (e) => {
+    if (!dragging || zoomLevel <= 1) return;
+    let newX = e.clientX - startPos.x;
+    let newY = e.clientY - startPos.y;
+
+    if (viewerRef.current) {
+      const vw = viewerRef.current.offsetWidth;
+      const vh = viewerRef.current.offsetHeight;
+      const maxX = ((zoomLevel - 1) * vw) / 2;
+      const maxY = ((zoomLevel - 1) * vh) / 2;
+
+      if (newX > maxX) newX = maxX;
+      if (newX < -maxX) newX = -maxX;
+      if (newY > maxY) newY = maxY;
+      if (newY < -maxY) newY = -maxY;
+    }
+
+    setPosition({ x: newX, y: newY });
   };
 
-  const resetZoom = () => setZoomLevel(1);
+  const handleMouseUp = () => setDragging(false);
+  const handleMouseLeave = () => setDragging(false);
 
+  // Zoom & fullscreen
+  const zoomIn = () => { if (zoomLevel < 3) setZoomLevel(prev => prev + 0.2); }
+  const zoomOut = () => { if (zoomLevel > 1) setZoomLevel(prev => prev - 0.2); }
+  const resetZoom = () => { setZoomLevel(1); setPosition({ x: 0, y: 0 }); }
   const toggleFullscreen = () => {
     if (viewerRef.current) {
-      if (!document.fullscreenElement) {
-        viewerRef.current.requestFullscreen();
-      } else {
-        document.exitFullscreen();
-      }
+      if (!document.fullscreenElement) viewerRef.current.requestFullscreen();
+      else document.exitFullscreen();
     }
   };
 
@@ -66,11 +103,26 @@ const Tour360 = () => {
       <section className="py-5">
         <div className="container">
           <div className="row g-4">
-            
-            {/* 360 VIEW + IMAGE */}
+            {/* 360 VIEW */}
             <div className="col-lg-8">
-              <div className="viewer-box position-relative" ref={viewerRef}>
-                <img src={activeLocationObj.img} alt={activeLocationObj.title} className="img-fluid" style={{ transform: `scale(${zoomLevel})` }}
+              <div
+                className="viewer-box position-relative"
+                ref={viewerRef}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onMouseLeave={handleMouseLeave}
+                style={{ cursor: dragging ? "grabbing" : zoomLevel > 1 ? "grab" : "default" }}
+              >
+                <img
+                  src={activeLocationObj.img}
+                  alt={activeLocationObj.title}
+                  className="img-fluid"
+                  draggable={false}
+                  style={{
+                    transform: `translate(${position.x}px, ${position.y}px) scale(${zoomLevel})`,
+                    transition: dragging ? "none" : "transform 0.2s",
+                  }}
                 />
 
                 {/* HOTSPOTS */}
@@ -88,12 +140,15 @@ const Tour360 = () => {
 
                 {/* CONTROLS */}
                 <div className="viewer-controls">
-                  <button onClick={zoomIn} title="Zoom In">+</button>
-                  <button onClick={zoomOut} title="Zoom Out">-</button>
-                  <button onClick={resetZoom} title="Reset">⟳</button>
-                  <button onClick={toggleFullscreen} title="Fullscreen">⛶</button>
+                  <button onClick={zoomIn}>+</button>
+                  <button onClick={zoomOut}>-</button>
+                  <button onClick={resetZoom}>⟳</button>
+                  <button onClick={toggleFullscreen}>⛶</button>
                 </div>
               </div>
+
+              {/* DESCRIPTION JASHTE IMAZHIT */}
+              <div className="location-description">{activeLocationObj.description}</div>
             </div>
 
             {/* SIDEBAR RIGHT */}
@@ -109,6 +164,17 @@ const Tour360 = () => {
                   <small>{loc.points} interactive points</small>
                 </div>
               ))}
+
+              {/* NAVIGATION TIPS */}
+              <div className="navigation-tips mt-4 p-3 bg-dark text-white rounded">
+                <h6>Navigation Tips</h6>
+                <ul>
+                  <li>Drag to rotate the 360° view</li>
+                  <li>Click golden markers for details</li>
+                  <li>Use zoom controls for closer look</li>
+                  <li>Switch locations from the sidebar</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
