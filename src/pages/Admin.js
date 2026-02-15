@@ -56,16 +56,24 @@ const Admin = () => {
               {/* STATS */}
               <div className="stats-row">
                 {[
-                  { title: "Total Views", value: "45,231", change: "+12.5%" },
-                  { title: "Active Stories", value: "28", change: "+3" },
-                  { title: "Locations", value: "45", change: "+5" },
-                  { title: "Events", value: "12", change: "+2" },
+                  { title: "Total Views", value: "45,231", change: "+12.5%", emoji: "👁️" },
+                  { title: "Active Stories", value: "28", change: "+3", emoji: "🖼️" },
+                  { title: "Locations", value: "45", change: "+5", emoji: "📍" },
+                  { title: "Events", value: "12", change: "+2", emoji: "📅" },
                 ].map((stat, idx) => (
                   <div className="stat-card card shadow-sm" key={idx}>
-                    <div className="card-body">
-                      <small className="text-success fw-semibold">{stat.change}</small>
-                      <h3 className="fw-bold mt-2">{stat.value}</h3>
-                      <p className="text-muted mb-0">{stat.title}</p>
+                    <div className="stat-header">
+                      {/* Majtas: ikon + text vertikal */}
+                      <div className="stat-left">
+                        <div className="stat-icon">{stat.emoji}</div>
+                        <div className="stat-text">
+                          <div className="stat-value">{stat.value}</div>
+                          <div className="stat-title">{stat.title}</div>
+                        </div>
+                      </div>
+
+                      {/* Djathtas: change */}
+                      <div className="stat-change text-success fw-semibold">{stat.change}</div>
                     </div>
                   </div>
                 ))}
@@ -113,6 +121,7 @@ const Admin = () => {
                             <small className="text-muted">{loc.type}</small>
                           </div>
                           <div className="text-end">
+                            
                             <strong>{loc.visits}</strong><br />
                             <small className="text-muted">visits</small>
                           </div>
@@ -131,7 +140,7 @@ const Admin = () => {
               <div className="card shadow-sm">
                 <div className="card-body">
                   <div className="d-flex justify-content-between align-items-center mb-4">
-                    <h3 className="fw-bold mb-0">AR Stories Management</h3>
+                    <div className="fw-bold mb-0">AR Stories Management</div>
                     <button className="btn btn-dark px-4">+ Add Story</button>
                   </div>
                   <div className="table-responsive">
@@ -182,7 +191,7 @@ const Admin = () => {
               <div className="card shadow-sm">
                 <div className="card-body">
                   <div className="d-flex justify-content-between align-items-center mb-4">
-                    <h3 className="fw-bold mb-0">Location Management</h3>
+                    <div className="fw-bold mb-0">Location Management</div>
                     <button className="btn btn-dark px-4">+ Add Location</button>
                   </div>
                   <div className="table-responsive">

@@ -71,6 +71,56 @@
   justify-content: center;
 }
 
+.stat-card {
+  padding: 1rem;
+  min-width: 180px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  background-color: #343a40; /* dark bg */
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.stat-text {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-value {
+  font-weight: bold;
+  font-size: 28px;
+  line-height: 1.2;
+}
+
+.stat-title {
+  font-size: 14px;
+  color: #6c757d; /* muted text */
+}
+
+.stat-change {
+  font-weight: 600;
+  color: #198754; /* green for positive */
+  margin-top: 4px;
+}
+
+
 /* =========================
    LISTS
 ========================= */
@@ -197,7 +247,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-.card-body h3 {
+.card-body div {
   font-size: 1.4rem;
 }
 
