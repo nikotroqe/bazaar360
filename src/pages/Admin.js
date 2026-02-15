@@ -54,20 +54,18 @@ const Admin = () => {
           {activeTab === "overview" && (
             <div id="overview" className="tab-content active">
               {/* STATS */}
-              <div className="row g-4 mb-5">
+              <div className="stats-row">
                 {[
                   { title: "Total Views", value: "45,231", change: "+12.5%" },
                   { title: "Active Stories", value: "28", change: "+3" },
                   { title: "Locations", value: "45", change: "+5" },
                   { title: "Events", value: "12", change: "+2" },
                 ].map((stat, idx) => (
-                  <div className="col-md-3" key={idx}>
-                    <div className="card shadow-sm stat-card">
-                      <div className="card-body">
-                        <small className="text-success fw-semibold">{stat.change}</small>
-                        <h3 className="fw-bold mt-2">{stat.value}</h3>
-                        <p className="text-muted mb-0">{stat.title}</p>
-                      </div>
+                  <div className="stat-card card shadow-sm" key={idx}>
+                    <div className="card-body">
+                      <small className="text-success fw-semibold">{stat.change}</small>
+                      <h3 className="fw-bold mt-2">{stat.value}</h3>
+                      <p className="text-muted mb-0">{stat.title}</p>
                     </div>
                   </div>
                 ))}
@@ -84,7 +82,6 @@ const Admin = () => {
                         { title: "The Master Coppersmith", author: "Agim Gjini", status: "Published" },
                         { title: "Traditional Pottery", author: "Elvira Hoxha", status: "Published" },
                         { title: "Textile Heritage", author: "Fatmir Shehu", status: "Draft" },
-                        { title: "Albanian Jewelry", author: "Mirela Dervishi", status: "Published" },
                       ].map((story, idx) => (
                         <div className="list-item" key={idx}>
                           <div>
@@ -109,7 +106,6 @@ const Admin = () => {
                         { name: "Traditional Pottery Shop", type: "Shop", visits: 892 },
                         { name: "Café Pazari", type: "Café", visits: 1205 },
                         { name: "Artisan Textile Market", type: "Market", visits: 654 },
-                        { name: "Restaurant Tradicionale", type: "Restaurant", visits: 1876 },
                       ].map((loc, idx) => (
                         <div className="list-item" key={idx}>
                           <div>
@@ -132,50 +128,48 @@ const Admin = () => {
           {/* AR STORIES */}
           {activeTab === "ar-stories" && (
             <div id="ar-stories" className="tab-content active">
-              <div className="container">
-                <div className="card shadow-sm">
-                  <div className="card-body">
-                    <div className="d-flex justify-content-between align-items-center mb-4">
-                      <h3 className="fw-bold mb-0">AR Stories Management</h3>
-                      <button className="btn btn-dark px-4">+ Add Story</button>
-                    </div>
-                    <div className="table-responsive">
-                      <table className="table align-middle table-hover">
-                        <thead className="table-light">
-                          <tr>
-                            <th>Title</th>
-                            <th>Artisan</th>
-                            <th>Status</th>
-                            <th>Views</th>
-                            <th className="text-end">Actions</th>
+              <div className="card shadow-sm">
+                <div className="card-body">
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h3 className="fw-bold mb-0">AR Stories Management</h3>
+                    <button className="btn btn-dark px-4">+ Add Story</button>
+                  </div>
+                  <div className="table-responsive">
+                    <table className="table align-middle table-hover">
+                      <thead className="table-light">
+                        <tr>
+                          <th>Title</th>
+                          <th>Artisan</th>
+                          <th>Status</th>
+                          <th>Views</th>
+                          <th className="text-end">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { title: "The Master Coppersmith", artisan: "Agim Gjini", status: "Published", views: 2543 },
+                          { title: "Traditional Pottery", artisan: "Elvira Hoxha", status: "Published", views: 3102 },
+                          { title: "Textile Heritage", artisan: "Fatmir Shehu", status: "Draft", views: 0 },
+                          { title: "Albanian Jewelry", artisan: "Mirela Dervishi", status: "Published", views: 4221 },
+                        ].map((story, idx) => (
+                          <tr key={idx}>
+                            <td>{story.title}</td>
+                            <td>{story.artisan}</td>
+                            <td>
+                              <span className={`status-${story.status.toLowerCase()}`}>
+                                {story.status}
+                              </span>
+                            </td>
+                            <td>{story.views.toLocaleString()}</td>
+                            <td className="text-end action-icons">
+                              <i className="bi bi-eye"></i>
+                              <i className="bi bi-pencil"></i>
+                              <i className="bi bi-trash"></i>
+                            </td>
                           </tr>
-                        </thead>
-                        <tbody>
-                          {[
-                            { title: "The Master Coppersmith", artisan: "Agim Gjini", status: "Published", views: 2543 },
-                            { title: "Traditional Pottery", artisan: "Elvira Hoxha", status: "Published", views: 3102 },
-                            { title: "Textile Heritage", artisan: "Fatmir Shehu", status: "Draft", views: 0 },
-                            { title: "Albanian Jewelry", artisan: "Mirela Dervishi", status: "Published", views: 4221 },
-                          ].map((story, idx) => (
-                            <tr key={idx}>
-                              <td>{story.title}</td>
-                              <td>{story.artisan}</td>
-                              <td>
-                                <span className={`status-${story.status.toLowerCase()}`}>
-                                  {story.status}
-                                </span>
-                              </td>
-                              <td>{story.views.toLocaleString()}</td>
-                              <td className="text-end action-icons">
-                                <i className="bi bi-eye"></i>
-                                <i className="bi bi-pencil"></i>
-                                <i className="bi bi-trash"></i>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -185,50 +179,48 @@ const Admin = () => {
           {/* Locations */}
           {activeTab === "locations" && (
             <div id="locations" className="tab-content active">
-              <div className="container">
-                <div className="card shadow-sm">
-                  <div className="card-body">
-                    <div className="d-flex justify-content-between align-items-center mb-4">
-                      <h3 className="fw-bold mb-0">Location Management</h3>
-                      <button className="btn btn-dark px-4">+ Add Location</button>
-                    </div>
-                    <div className="table-responsive">
-                      <table className="table align-middle table-hover">
-                        <thead className="table-light">
-                          <tr>
-                            <th>Name</th>
-                            <th>Category</th>
-                            <th>Status</th>
-                            <th>Visits</th>
-                            <th className="text-end">Actions</th>
+              <div className="card shadow-sm">
+                <div className="card-body">
+                  <div className="d-flex justify-content-between align-items-center mb-4">
+                    <h3 className="fw-bold mb-0">Location Management</h3>
+                    <button className="btn btn-dark px-4">+ Add Location</button>
+                  </div>
+                  <div className="table-responsive">
+                    <table className="table align-middle table-hover">
+                      <thead className="table-light">
+                        <tr>
+                          <th>Name</th>
+                          <th>Category</th>
+                          <th>Status</th>
+                          <th>Visits</th>
+                          <th className="text-end">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {[
+                          { name: "Traditional Pottery Shop", type: "Shop", status: "Verified", visits: 892 },
+                          { name: "Café Pazari", type: "Café", status: "Verified", visits: 1205 },
+                          { name: "Artisan Textile Market", type: "Market", status: "Pending", visits: 654 },
+                          { name: "Restaurant Tradicionale", type: "Restaurant", status: "Pending", visits: 1876 },
+                        ].map((loc, idx) => (
+                          <tr key={idx}>
+                            <td>{loc.name}</td>
+                            <td>{loc.type}</td>
+                            <td>
+                              <span className={`status-${loc.status.toLowerCase()}`}>
+                                {loc.status}
+                              </span>
+                            </td>
+                            <td>{loc.visits}</td>
+                            <td className="text-end action-icons">
+                              <i className="bi bi-eye"></i>
+                              <i className="bi bi-pencil"></i>
+                              <i className="bi bi-trash"></i>
+                            </td>
                           </tr>
-                        </thead>
-                        <tbody>
-                          {[
-                            { name: "Traditional Pottery Shop", type: "Shop", status: "Verified", visits: 892 },
-                            { name: "Café Pazari", type: "Café", status: "Verified", visits: 1205 },
-                            { name: "Artisan Textile Market", type: "Market", status: "Pending", visits: 654 },
-                            { name: "Restaurant Tradicionale", type: "Restaurant", status: "Pending", visits: 1876 },
-                          ].map((loc, idx) => (
-                            <tr key={idx}>
-                              <td>{loc.name}</td>
-                              <td>{loc.type}</td>
-                              <td>
-                                <span className={`status-${loc.status.toLowerCase()}`}>
-                                  {loc.status}
-                                </span>
-                              </td>
-                              <td>{loc.visits}</td>
-                              <td className="text-end action-icons">
-                                <i className="bi bi-eye"></i>
-                                <i className="bi bi-pencil"></i>
-                                <i className="bi bi-trash"></i>
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </div>
+                        ))}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
@@ -239,7 +231,7 @@ const Admin = () => {
           {activeTab === "events" && (
             <div id="events" className="tab-content active">
               <div className="container d-flex justify-content-center">
-                <div className="card shadow-sm w-100" style={{ maxWidth: "720px" }}>
+                <div className="card shadow-sm">
                   <div className="card-body text-center py-5">
                     <div className="calendar-icon mx-auto mb-3">
                       <i className="bi bi-calendar-event"></i>
@@ -262,4 +254,3 @@ const Admin = () => {
 };
 
 export default Admin;
-

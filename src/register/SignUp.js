@@ -133,7 +133,7 @@ const SignUp = () => {
                         required
                         >
                         <option value="">Choose category</option>
-                        <option value="artisan">Artisan</option>
+                        <option value=""></option>
                         <option value="business">Business</option>
                         <option value="visitor">Visitor</option>
                         </select>

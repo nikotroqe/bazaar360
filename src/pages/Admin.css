@@ -1,28 +1,79 @@
+.admin-page {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* =========================
+   HEADER
+========================= */
 .dashboard-hero {
   padding: 34px 0;
-  background: #000;
+  background: #000000;
 }
 
 .dashboard-hero h1 {
   font-size: 1.8rem;
-  color: #fff;
+  color: white;
 }
 
+/* =========================
+   CONTENT
+========================= */
 .dashboard-content {
   padding: 40px 0;
 }
 
+/* =========================
+   TABS
+========================= */
+.nav-pills {
+  background-color: rgb(241, 241, 241);
+  padding: 4px;
+  display: inline-flex;
+  gap: 4px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: 15px;
+}
+
 .nav-pills .nav-link {
-  color: #555;
+  color: #232323;
   background: transparent;
+  border-radius: 0px;
+  padding: 10px 16px;
+  cursor: pointer;
 }
 
 .nav-pills .nav-link.active {
   background-color: #fff;
-  color: #000;
-  border: 1px solid #ddd;
+  color: #2a2a2a;
+  border-radius: 0px;
 }
 
+/* =========================
+   STAT CARDS
+========================= */
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.stats-row .stat-card {
+  flex: 1 1 calc(25% - 12px);
+  min-width: 220px;
+}
+
+.stat-card .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* =========================
+   LISTS
+========================= */
 .list-item {
   display: flex;
   justify-content: space-between;
@@ -35,12 +86,131 @@
   border-bottom: none;
 }
 
-.status-published {
-  background-color: #dcfce7;
-  color: #15803d;
+/* =========================
+   STATUS BADGES
+========================= */
+.status-published,
+.status-verified {
+  background-color: #d1fae5;
+  color: #065f46;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 0px;
+  font-weight: 500;
 }
 
-.status-draft {
+.status-draft,
+.status-pending {
   background-color: #f3f4f6;
-  color: #6b7280;
+  color: #374151;
+  font-size: 0.75rem;
+  padding: 4px 10px;
+  border-radius: 0px;
+  font-weight: 500;
+}
+
+/* =========================
+   CARD FIX (KJO E RREGULLON PROBLEMIN)
+========================= */
+
+.dashboard-content .row.g-4 > .col-md-6 .card {
+  width: 100%;
+}
+
+/* Center card në tab-et e tjera */
+.tab-content .container {
+  display: flex;
+  justify-content: center;
+}
+
+.tab-content .card {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+
+/* Events card më i ngushtë */
+#events .card {
+  max-width: 720px;
+}
+
+/* =========================
+   TABLE DESIGN
+========================= */
+
+.table {
+  width: 100%;
+  margin-bottom: 0;
+  font-size: 0.9rem;
+  border-collapse: collapse;
+}
+
+.table thead {
+  background-color: #f8f9fa;
+}
+
+.table thead th {
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: #111;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 14px 16px;
+}
+
+.table tbody td {
+  padding: 16px;
+  vertical-align: middle;
+  border-bottom: 1px solid #eeeeee;
+  color: #333;
+}
+
+/* Hover i lehtë */
+.table tbody tr:hover {
+  background-color: #f9f9f9;
+}
+
+/* =========================
+   ACTION ICONS
+========================= */
+.action-icons {
+  white-space: nowrap;
+}
+
+.action-icons i {
+  font-size: 1rem;
+  margin-left: 14px;
+  cursor: pointer;
+  color: #333;
+  transition: opacity 0.2s ease;
+}
+
+.action-icons i:hover {
+  opacity: 0.6;
+}
+
+/* =========================
+   CARD GENERAL
+========================= */
+.card {
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.card-body h3 {
+  font-size: 1.4rem;
+}
+
+/* =========================
+   BUTTON
+========================= */
+.btn-dark {
+  background-color: #000;
+  border: none;
+  font-size: 0.85rem;
+  padding: 8px 18px;
+}
+
+.btn-dark:hover {
+  background-color: #222;
 }
