@@ -19,24 +19,31 @@ const About = () => {
         <div className="container">
 
           {/* Intro */}
-          <p className="lead-pg">
-            n'Bazaar360 is a digital cultural initiative developed within the
-            Web Challenge program,<br/> supported by the Municipality of Tirana.
-            The platform reimagines Pazari i Ri,<br/> one of Tirana's most iconic
-            public spaces, through immersive 360° virtual tours and<br/>
-            augmented reality (AR) experiences, connecting tradition with
-            modern technology.
-          </p>
+          
+          <div className="about-flex">
+            <div className="about-text">
+              <p>
+                n'Bazaar360 is a digital cultural initiative developed within the
+                Web Challenge program, supported by the Municipality of Tirana.
+                The platform reimagines Pazari i Ri through immersive 360° tours
+                and AR experiences.
+              </p>
 
-          <p className="lead-pg">
-            Designed as a next-generation cultural platform, n'Bazaar360 allows locals and<br/>
-            international visitors to explore the market beyond physical presence—discovering<br/>
-            its stories, artisans, products, and everyday life anytime, from anywhere.<br/>
-            By blending digital storytelling with spatial technology, the project transforms<br/>
-            Pazari i Ri into a living digital archive and a flagship example of<br/>
-            Tirana Smart City.
-          </p>
+              <p>
+                Designed as a next-generation cultural platform, n'Bazaar360 allows
+                locals and international visitors to explore the market beyond
+                physical presence—discovering its stories, artisans, and products.
+              </p>
+            </div>
 
+            <div className="about-image">
+              <img
+                src="https://itinari-images.s3.eu-west-1.amazonaws.com/activity/images/original/c93930d4-a4ec-4a3b-ba0f-95538ddf63fd-istock-925240908.jpg"
+                alt="Pazari i Ri Tirana"
+              />
+            </div>
+          </div>
+          
           {/* Vision */}
           <h3 className="mt-5 fw-semibold">Our Vision</h3>
           <p>
