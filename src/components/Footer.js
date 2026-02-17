@@ -65,12 +65,12 @@ const Footer = () => {
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/archive" className="text-light text-decoration-none">
+                <Link to="/partner" className="text-light text-decoration-none">
                   Partner with Us
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/archive" className="text-light text-decoration-none">
+                <Link to="/privacy_policy" className="text-light text-decoration-none">
                   Privacy Policy
                 </Link>
               </li>

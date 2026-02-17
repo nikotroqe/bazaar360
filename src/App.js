@@ -13,6 +13,9 @@ import Map from "./pages/Map";
 import Contact from "./pages/Contact";
 import Admin from "./pages/Admin";
 
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import Partner from "./pages/Partner";
+
 // Registeri dhe login
 import Login from "./register/Login";
 import SignUp from "./register/SignUp";
@@ -32,6 +35,10 @@ const App = () => {
         <Route path="/map" element={<Map />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin" element={<Admin />} />
+
+        <Route path="/privacy_policy" element={<PrivacyPolicy />} />
+        <Route path="/partner" element={<Partner />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/sign_up" element={<SignUp />} />
 

@@ -22,6 +22,7 @@ section h3 {
 
 .lead-pg {
   color: rgb(112, 112, 112);
+  font-size: 1.2rem;
 }
 
 .title h3::before {
