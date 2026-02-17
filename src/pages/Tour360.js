@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"; 
+import React, { useState, useRef } from "react";
 import "./Tour360.css";
 
 const Tour360 = () => {
@@ -9,33 +9,46 @@ const Tour360 = () => {
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const viewerRef = useRef(null);
 
-  const hotspots = [
-    { title: "Main Square", top: "35%", left: "55%" },
-    { title: "Artisan Shop", top: "65%", left: "30%" },
-  ];
-
   const locations = [
-    { 
-      title: "Main Square", 
-      points: 12, 
+    {
+      title: "Main Square",
       img: "https://images.unsplash.com/photo-1728733287961-570ecea608bf?q=80&w=1400",
-      description: "The vibrant heart of Pazari i Ri, where local vendors showcase fresh produce and traditional goods."
+      description:
+        "The vibrant heart of Pazari i Ri, where local vendors showcase fresh produce and traditional goods.",
+      hotspots: [
+        { title: "Fresh Market Area", top: "35%", left: "55%" },
+        { title: "Local Vendors", top: "60%", left: "40%" },
+      ],
     },
-    { 
-      title: "Artisan Corner", 
-      points: 8, 
+    {
+      title: "Artisan Corner",
       img: "https://images.unsplash.com/photo-1762999851391-9113591f49ed?q=80&w=1400",
-      description: "Discover handcrafted goods and traditional Albanian artisanship in this cozy market section."
+      description:
+        "Discover handcrafted goods and traditional Albanian artisanship in this cozy market section.",
+      hotspots: [
+        { title: "Handmade Jewelry", top: "45%", left: "30%" },
+        { title: "Traditional Crafts", top: "70%", left: "65%" },
+      ],
     },
-    { 
-      title: "Central Plaza", 
-      points: 15, 
+    {
+      title: "Central Plaza",
       img: "https://images.unsplash.com/photo-1719861033127-00b5346c4215?q=80&w=1400",
-      description: "A bustling meeting point surrounded by cafes, restaurants, and cultural landmarks."
+      description:
+        "A bustling meeting point surrounded by cafes, restaurants, and cultural landmarks.",
+      hotspots: [
+        { title: "Main Fountain", top: "50%", left: "50%" },
+        { title: "Cafe Zone", top: "30%", left: "70%" },
+      ],
     },
   ];
 
-  const handleHotspotClick = (title) => alert(title);
+  const activeLocationObj = locations.find(
+    (loc) => loc.title === activeLocation
+  );
+
+  const handleHotspotClick = (title) => {
+    alert(title);
+  };
 
   const handleLocationClick = (title) => {
     setActiveLocation(title);
@@ -43,7 +56,7 @@ const Tour360 = () => {
     setPosition({ x: 0, y: 0 });
   };
 
-  // Drag functions: lejo drag vetem kur zoom > 1
+  // Drag (only if zoom > 1)
   const handleMouseDown = (e) => {
     if (zoomLevel <= 1) return;
     setDragging(true);
@@ -52,6 +65,7 @@ const Tour360 = () => {
 
   const handleMouseMove = (e) => {
     if (!dragging || zoomLevel <= 1) return;
+
     let newX = e.clientX - startPos.x;
     let newY = e.clientY - startPos.y;
 
@@ -73,18 +87,25 @@ const Tour360 = () => {
   const handleMouseUp = () => setDragging(false);
   const handleMouseLeave = () => setDragging(false);
 
-  // Zoom & fullscreen
-  const zoomIn = () => { if (zoomLevel < 3) setZoomLevel(prev => prev + 0.2); }
-  const zoomOut = () => { if (zoomLevel > 1) setZoomLevel(prev => prev - 0.2); }
-  const resetZoom = () => { setZoomLevel(1); setPosition({ x: 0, y: 0 }); }
+  const zoomIn = () => {
+    if (zoomLevel < 3) setZoomLevel((prev) => prev + 0.2);
+  };
+
+  const zoomOut = () => {
+    if (zoomLevel > 1) setZoomLevel((prev) => prev - 0.2);
+  };
+
+  const resetZoom = () => {
+    setZoomLevel(1);
+    setPosition({ x: 0, y: 0 });
+  };
+
   const toggleFullscreen = () => {
     if (viewerRef.current) {
       if (!document.fullscreenElement) viewerRef.current.requestFullscreen();
       else document.exitFullscreen();
     }
   };
-
-  const activeLocationObj = locations.find(loc => loc.title === activeLocation);
 
   return (
     <>
@@ -93,17 +114,18 @@ const Tour360 = () => {
         <div className="container">
           <h1 className="display-5 fw-bold">360° Virtual Exploration</h1>
           <p className="lead text-light mt-3">
-            Navigate through immersive panoramic views of Pazari i Ri. <br />
+            Navigate through immersive panoramic views of Pazari i Ri.
+            <br />
             Click and drag to explore every corner of this historic marketplace.
           </p>
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       <section className="py-5">
         <div className="container">
           <div className="row g-4">
-            {/* 360 VIEW */}
+            {/* VIEWER */}
             <div className="col-lg-8">
               <div
                 className="viewer-box position-relative"
@@ -112,12 +134,14 @@ const Tour360 = () => {
                 onMouseMove={handleMouseMove}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseLeave}
-                style={{ cursor: dragging ? "grabbing" : zoomLevel > 1 ? "grab" : "default" }}
+                style={{
+                  cursor:
+                    dragging ? "grabbing" : zoomLevel > 1 ? "grab" : "default",
+                }}
               >
                 <img
                   src={activeLocationObj.img}
                   alt={activeLocationObj.title}
-                  className="img-fluid"
                   draggable={false}
                   style={{
                     transform: `translate(${position.x}px, ${position.y}px) scale(${zoomLevel})`,
@@ -126,7 +150,7 @@ const Tour360 = () => {
                 />
 
                 {/* HOTSPOTS */}
-                {hotspots.map((hotspot, idx) => (
+                {activeLocationObj.hotspots.map((hotspot, idx) => (
                   <span
                     key={idx}
                     className="hotspot"
@@ -136,7 +160,9 @@ const Tour360 = () => {
                 ))}
 
                 {/* LABEL */}
-                <div className="location-label">{activeLocationObj.title}</div>
+                <div className="location-label">
+                  {activeLocationObj.title}
+                </div>
 
                 {/* CONTROLS */}
                 <div className="viewer-controls">
@@ -147,25 +173,28 @@ const Tour360 = () => {
                 </div>
               </div>
 
-              {/* DESCRIPTION JASHTE IMAZHIT */}
-              <div className="location-description">{activeLocationObj.description}</div>
+              <div className="location-description">
+                {activeLocationObj.description}
+              </div>
             </div>
 
-            {/* SIDEBAR RIGHT */}
+            {/* SIDEBAR */}
             <div className="col-lg-4">
               <h4 className="fw-bold mb-4">Locations</h4>
+
               {locations.map((loc, idx) => (
                 <div
                   key={idx}
-                  className={`location-card ${activeLocation === loc.title ? "active" : ""}`}
+                  className={`location-card ${
+                    activeLocation === loc.title ? "active" : ""
+                  }`}
                   onClick={() => handleLocationClick(loc.title)}
                 >
                   <h6>{loc.title}</h6>
-                  <small>{loc.points} interactive points</small>
+                  <small>{loc.hotspots.length} interactive points</small>
                 </div>
               ))}
 
-              {/* NAVIGATION TIPS */}
               <div className="navigation-tips mt-4 p-3 bg-dark text-white rounded">
                 <h6>Navigation Tips</h6>
                 <ul>
