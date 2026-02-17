@@ -7,28 +7,35 @@ const Home = () => {
     <div className="home-page">
       {/* HERO SECTION */}
       <header className="hero-section text-center text-white">
-        <div className="container">
-          <span className="badge bg-warning text-dark mb-3">
+        <div className="container hero-content">
+          
+          <div className="hero-badge mb-4">
+            <span className="dot"></span>
             Digital Cultural Experience
-          </span>
-          <h1 className="display-4 fw-bold mt-3">
-            Pazari i Ri <span className="text-warning">Reimagined</span>
-          </h1>
-          <p className="lead mt-4">
+          </div>
+
+          <div className="hero-title">
+            Pazari i Ri <br />
+            <span>Reimagined</span>
+          </div>
+
+          <p className="hero-subtitle mt-4">
             Experience Tirana's historic New Bazaar through immersive 360° tours,
             augmented reality stories, and interactive cultural exploration.
           </p>
 
-          <div className="mt-5">
-            <Link to="/tour360" className="btn btn-danger btn-lg me-3">
-              Start Exploring
+          <div className="hero-buttons mt-5">
+            <Link to="/tour360" className="btn-primary-custom me-3">
+              Start Exploring →
             </Link>
-            <Link to="/ar_stories" className="btn btn-outline-light btn-lg">
+            <Link to="/ar_stories" className="btn-secondary-custom">
               View AR Stories
             </Link>
           </div>
+
         </div>
       </header>
+
 
       {/* FEATURES */}
       <section className="py-5 bg-white">
