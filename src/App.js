@@ -21,7 +21,9 @@ import SignUp from "./register/SignUp";
 const App = () => {
   return (
     <Router>
-      <Navbar />
+      <div style={{margin: 60}}>
+        <Navbar /> {/* Navbar shfaqet gjithmonë */}
+      </div>
 
       <Routes>
         {/* Main Routes */}

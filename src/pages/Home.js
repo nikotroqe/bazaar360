@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect  } from "react";
+import { Link, useLocation } from "react-router-dom";
 import "./Home.css";
 /* ========================
    FEATURED DATA
@@ -58,11 +58,23 @@ const Home = () => {
 
   const itemsPerView = 4;
   const [startIndex, setStartIndex] = useState(0);
+  const location = useLocation();
+  const [heroVisible, setHeroVisible] = useState(false);
 
   const totalSlides = Math.max(
     featuredBusinesses.length - itemsPerView + 1,
     1
   );
+
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setHeroVisible(true);
+  }, 200);
+
+  return () => clearTimeout(timer);
+}, [location]);
+
 
   return (
     <div className="home-page">
@@ -70,22 +82,22 @@ const Home = () => {
       <header className="hero-section text-center text-white">
         <div className="container hero-content">
           
-          <div className="hero-badge mb-4">
+          <div className={`hero-badge mb-4 ${heroVisible ? "show" : ""}`}>
             <span className="dot"></span>
             Digital Cultural Experience
           </div>
 
-          <div className="hero-title">
+          <div className={`hero-title ${heroVisible ? "show" : ""}`}>
             Pazari i Ri <br />
             <span>Reimagined</span>
           </div>
 
-          <p className="hero-subtitle mt-4">
+          <p className={`hero-subtitle mt-4 ${heroVisible ? "show" : ""}`}>
             Experience Tirana's historic New Bazaar through immersive 360° tours,
             augmented reality stories, and interactive cultural exploration.
           </p>
 
-          <div className="hero-buttons mt-5">
+          <div className={`hero-buttons mt-5 ${heroVisible ? "show" : ""}`}>
             <Link to="/tour360" className="btn-primary-custom me-3">
               Start Exploring →
             </Link>

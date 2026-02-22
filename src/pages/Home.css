@@ -34,6 +34,44 @@
   /* Define the transition: animate the 'opacity' property over 0.5 seconds with an ease-in timing function */
   transition: opacity 0.5s ease-in;
 }
+/*Transform Header*/
+.hero-badge{
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+.hero-title{
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease;
+}
+.hero-subtitle{
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 1s ease;
+}
+.hero-buttons {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: all 1s ease;
+}
+
+.hero-badge.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-title.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-subtitle.show{
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-buttons.show {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .hero-badge .dot {
   width: 8px;
@@ -41,6 +79,7 @@
   background: #d4a017;
   border-radius: 50%;
 }
+
 
 /* Title */
 .hero-title {
