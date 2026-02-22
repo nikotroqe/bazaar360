@@ -12,36 +12,207 @@
   background-color: #c6c600;
 }
 
+.navbar {
+  padding: 10px;
+  overflow: visible;
+}
+
 .navbar-brand {
   font-family: 'Segoe UI', sans-serif;
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 16px;
+  font-weight: 100;
 }
 
-/* Search in navbar */
-.navbar .search-form {
+.nav-link {
+  position: relative;
+  color: #696969;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #000000;
+}
+
+.active-link {
+  color: #B63E3E !important;
+}
+
+.active-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background-color: #B63E3E;
+}
+/*Navbar Toggler*/
+.navbar-toggler {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+}
+
+.navbar-toggler-icon {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: #333;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 2px;
+  background-color: #333;
+  transition: all 0.3s;
+}
+
+.navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler-icon::after {
+  bottom: -8px;
+}
+
+/* Kur menu është open, krijon X */
+.navbar-toggler.open .navbar-toggler-icon {
+  background-color: transparent;
+}
+
+.navbar-toggler.open .navbar-toggler-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.navbar-toggler.open .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+  bottom: 0;
+}
+/* Search Box Styling */
+.search-container {
+  position: relative;
+  width: 230px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.search-container img {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.search-input {
+  width: 80%;
+  padding: 6px 10px 6px 30px; /* hapësirë për ikonën */
+  border: 1px solid #ddd;
+  font-size: 14px;
+  background: url('https://cdn-icons-png.flaticon.com/512/8656/8656049.png') 
+              no-repeat 8px center;
+  background-size: 16px;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.search-input:focus {
+  border-color: #B63E3E;
+  box-shadow: 0 0 0 2px rgba(182, 62, 62, 0.1);
+  outline: none;
+}
+
+.search-dropdown {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #eee;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  
+  width: 350px;
+  max-height: 350px;
+  overflow-y: auto;
+  padding: 8px 0;
+  border-radius: 10px;
+}
+
+.search-item {
+  padding: 10px 16px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 
-.navbar .search-form input {
-  width: 200px;
-  border-radius: 20px;
-  padding: 6px 15px;
-  transition: width 0.3s ease;
+.search-item:hover {
+  background-color: #f9ecec;
 }
 
-.navbar .search-form input:focus {
-  width: 250px;
+.search-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.search-item-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-category {
+  background-color: #F7F3E9;
+  font-size: 11px;
+  color: #B63E3E;
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.search-description {
+  font-size: 12px;
+  color: #666;
+  margin-top: 2px;
+}
+.search-no-results {
+  padding: 16px;
+  text-align: center;
+  cursor: default;
 }
 
 
-/* Mobile responsive */
+.no-results-title {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.no-results-sub {
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+
+/* Mobile adjustments */
 @media (max-width: 991px) {
-  .navbar .search-form {
-    margin-top: 10px;
-  }
-
-  .navbar .search-form input {
-    width: 100%;
-  }
+  .navbar-nav { flex-direction: column; }
+  .search-container { width: 100%; margin-top: 10px; }
 }

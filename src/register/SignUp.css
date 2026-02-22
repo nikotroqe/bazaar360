@@ -1,13 +1,13 @@
 .signup-section {
-  min-height: 200vh;
+  min-height: 150vh;
   display: flex;
   align-items: center;
-
+  margin-right: 5%;
 }
 
 .card {
   border-radius: 1rem;
-  width: 500px;
+  width: 600px;
 }
 
 .btn-primary {

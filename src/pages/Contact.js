@@ -3,8 +3,10 @@ import "./Contact.css";
 
 const Contact = () => {
   const [form, setForm] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
+    subject: "",
     message: "",
   });
 
@@ -19,16 +21,17 @@ const Contact = () => {
     e.preventDefault();
 
     const newErrors = {};
-
-    if (!form.name.trim()) newErrors.name = true;
+    if (!form.firstName.trim()) newErrors.firstName = true;
+    if (!form.lastName.trim()) newErrors.lastName = true;
     if (!form.email.trim()) newErrors.email = true;
+    if (!form.subject.trim()) newErrors.subject = true;
     if (!form.message.trim()) newErrors.message = true;
 
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length === 0) {
       setSubmitted(true);
-      setForm({ name: "", email: "", message: "" });
+      setForm({ firstName: "", lastName: "", email: "", subject: "", message: "" });
     }
   };
 
@@ -49,23 +52,38 @@ const Contact = () => {
 
             {/* INFO */}
             <div className="col-lg-5">
-              <h3 className="fw-bold mb-3">Let’s Connect</h3>
+              <h3 className="fw-bold mb-3">Get in Touch</h3>
               <p className="text-muted mb-4">
-                Whether you are an artisan, a visitor or a cultural partner,
-                we would love to hear from you.
+                Whether you are an artisan, a visitor, or a cultural partner,
+                we are excited to hear from you and connect!
               </p>
 
-              <ul className="list-unstyled">
-                <li className="mb-3">
-                  <strong>📍 Location:</strong> Pazari i Ri, Tirana
-                </li>
-                <li className="mb-3">
-                  <strong>📧 Email:</strong> info@bazaar360.al
-                </li>
-                <li className="mb-3">
-                  <strong>📞 Phone:</strong> +355 00 000 000
-                </li>
-              </ul>
+              {/* INFO CARD WITH BORDER */}
+              <div className="contact-info-card p-3 border rounded">
+                <ul className="list-unstyled mb-0">
+                  <li className="contact-item mb-3">
+                    <i class="bi bi-geo-alt-fill contact-icon"></i>
+                    <span className="contact-text">
+                      <strong>Location:</strong><br />
+                      Municipality of Tirana, Tirana, Albania
+                    </span>
+                  </li>
+                  <li className="contact-item mb-3">
+                    <i class="bi bi-envelope contact-icon"></i>
+                    <span className="contact-text">
+                      <strong>Email:</strong><br />
+                      bazaar360@tirana.al
+                    </span>
+                  </li>
+                  <li className="contact-item mb-3">
+                    <i className="bi bi-telephone contact-icon"></i>
+                    <span className="contact-text">
+                      <strong>Phone:</strong><br />
+                      N/A
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* FORM */}
@@ -73,30 +91,42 @@ const Contact = () => {
               <div className="contact-card">
                 <form onSubmit={handleSubmit} noValidate>
 
-                  <div className="mb-3">
-                    <label className="form-label">Full Name</label>
-                    <input
-                      type="text"
-                      name="name"
-                      className={`form-control ${
-                        errors.name ? "is-invalid" : ""
-                      }`}
-                      value={form.name}
-                      onChange={handleChange}
-                    />
-                    <div className="invalid-feedback">
-                      Please enter your name.
+                  {/* First Name + Last Name in two columns */}
+                  <div className="row mb-3">
+                    <div className="col">
+                      <label className="form-label">First Name</label>
+                      <input
+                        type="text"
+                        name="firstName"
+                        placeholder="Enter your first name"
+                        className={`form-control ${errors.firstName ? "is-invalid" : ""}`}
+                        value={form.firstName}
+                        onChange={handleChange}
+                      />
+                      <div className="invalid-feedback">Please enter your first name.</div>
+                    </div>
+                    <div className="col">
+                      <label className="form-label">Last Name</label>
+                      <input
+                        type="text"
+                        name="lastName"
+                        placeholder="Enter your last name"
+                        className={`form-control ${errors.lastName ? "is-invalid" : ""}`}
+                        value={form.lastName}
+                        onChange={handleChange}
+                      />
+                      <div className="invalid-feedback">Please enter your last name.</div>
                     </div>
                   </div>
 
+                  {/* Email */}
                   <div className="mb-3">
                     <label className="form-label">Email Address</label>
                     <input
                       type="email"
                       name="email"
-                      className={`form-control ${
-                        errors.email ? "is-invalid" : ""
-                      }`}
+                      placeholder="Enter your email address"
+                      className={`form-control ${errors.email ? "is-invalid" : ""}`}
                       value={form.email}
                       onChange={handleChange}
                     />
@@ -105,20 +135,18 @@ const Contact = () => {
                     </div>
                   </div>
 
+                  {/* Message */}
                   <div className="mb-3">
                     <label className="form-label">Message</label>
                     <textarea
                       name="message"
+                      placeholder="Write your message here"
                       rows="5"
-                      className={`form-control ${
-                        errors.message ? "is-invalid" : ""
-                      }`}
+                      className={`form-control ${errors.message ? "is-invalid" : ""}`}
                       value={form.message}
                       onChange={handleChange}
                     />
-                    <div className="invalid-feedback">
-                      Message cannot be empty.
-                    </div>
+                    <div className="invalid-feedback">Message cannot be empty.</div>
                   </div>
 
                   <button type="submit" className="btn btn-danger px-4">

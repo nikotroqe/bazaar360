@@ -16,7 +16,7 @@ const Admin = () => {
         <div className="container d-flex justify-content-between align-items-center">
           <div>
             <h1 className="fw-bold mb-1">Admin Dashboard</h1>
-            <p className="text-light mb-0">
+            <p className="mb-0">
               Manage content, locations, and events for n'Bazaar360
             </p>
           </div>
@@ -56,23 +56,24 @@ const Admin = () => {
               {/* STATS */}
               <div className="stats-row">
                 {[
-                  { title: "Total Views", value: "45,231", change: "+12.5%", emoji: "👁️" },
-                  { title: "Active Stories", value: "28", change: "+3", emoji: "🖼️" },
-                  { title: "Locations", value: "45", change: "+5", emoji: "📍" },
-                  { title: "Events", value: "12", change: "+2", emoji: "📅" },
+                  { title: "Total Views", value: "45,231", change: "+12.5%", icon: "bi-eye" },
+                  { title: "Active Stories", value: "28", change: "+3", icon: "bi-images" },
+                  { title: "Locations", value: "45", change: "+5", icon: "bi-geo-alt" },
+                  { title: "Events", value: "12", change: "+2", icon: "bi-calendar-event" },
                 ].map((stat, idx) => (
                   <div className="stat-card card shadow-sm" key={idx}>
                     <div className="stat-header">
-                      {/* Majtas: ikon + text vertikal */}
+                      {/* Left: icon + text */}
                       <div className="stat-left">
-                        <div className="stat-icon">{stat.emoji}</div>
+                        <div className="stat-icon">
+                          <i className={`bi ${stat.icon}`}></i>
+                        </div>
                         <div className="stat-text">
                           <div className="stat-value">{stat.value}</div>
                           <div className="stat-title">{stat.title}</div>
                         </div>
                       </div>
-
-                      {/* Djathtas: change */}
+                      {/* Right: change */}
                       <div className="stat-change text-success fw-semibold">{stat.change}</div>
                     </div>
                   </div>
@@ -91,12 +92,21 @@ const Admin = () => {
                         { title: "Traditional Pottery", author: "Elvira Hoxha", status: "Published" },
                         { title: "Textile Heritage", author: "Fatmir Shehu", status: "Draft" },
                       ].map((story, idx) => (
-                        <div className="list-item" key={idx}>
-                          <div>
-                            <strong>{story.title}</strong><br />
-                            <small className="text-muted">{story.author}</small>
+                        <div className="list-item d-flex justify-content-between align-items-start" key={idx}>
+                          <div className="story-info">
+                            <strong className="story-title">{story.title}</strong>
+                            <small className="story-author text-muted">
+                              {story.author}
+                            </small>
                           </div>
-                          <span className={`badge ${story.status === "Published" ? "status-published" : "status-draft"}`}>
+
+                          <span
+                            className={`badge ${
+                              story.status === "Published"
+                                ? "status-published"
+                                : "status-draft"
+                            }`}
+                          >
                             {story.status}
                           </span>
                         </div>
@@ -110,23 +120,33 @@ const Admin = () => {
                   <div className="card shadow-sm">
                     <div className="card-body">
                       <h5 className="fw-bold mb-4">Top Locations</h5>
+
                       {[
                         { name: "Traditional Pottery Shop", type: "Shop", visits: 892 },
                         { name: "Café Pazari", type: "Café", visits: 1205 },
                         { name: "Artisan Textile Market", type: "Market", visits: 654 },
                       ].map((loc, idx) => (
-                        <div className="list-item" key={idx}>
-                          <div>
-                            <strong>{loc.name}</strong><br />
-                            <small className="text-muted">{loc.type}</small>
+                        <div className="list-item d-flex justify-content-between align-items-start" key={idx}>
+                          {/* LEFT */}
+                          <div className="location-info">
+                            <strong className="location-name">{loc.name}</strong>
+                            <small className="location-type text-muted">
+                              {loc.type}
+                            </small>
                           </div>
-                          <div className="text-end">
-                            
-                            <strong>{loc.visits}</strong><br />
-                            <small className="text-muted">visits</small>
+
+                          {/* RIGHT */}
+                          <div className="location-visits">
+                            <strong className="visits-number">
+                              {loc.visits.toLocaleString()}
+                            </strong>
+                            <small className="visits-label text-muted">
+                              visits
+                            </small>
                           </div>
                         </div>
                       ))}
+
                     </div>
                   </div>
                 </div>
@@ -243,9 +263,9 @@ const Admin = () => {
                 <div className="card shadow-sm">
                   <div className="card-body text-center py-5">
                     <div className="calendar-icon mx-auto mb-3">
-                      <i className="bi bi-calendar-event"></i>
+                      <i className="bi bi-calendar-event event-icon"></i>
                     </div>
-                    <h3 className="fw-bold mb-2">Events Management</h3>
+                    <h3 className="mb-2">Events Management</h3>
                     <p className="text-muted mb-4">
                       Create and manage cultural events at Pazari i Ri
                     </p>

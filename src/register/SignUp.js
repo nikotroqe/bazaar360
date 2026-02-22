@@ -57,12 +57,12 @@ const SignUp = () => {
 
               <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                  <label className="form-label">Full Name</label>
+                  <label className="form-label">Business Name</label>
                   <input
                     type="text"
                     className="form-control"
                     name="name"
-                    placeholder="Your Name"
+                    placeholder="Your Business Name"
                     value={formData.name}
                     onChange={handleChange}
                     required

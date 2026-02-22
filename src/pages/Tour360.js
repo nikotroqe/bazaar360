@@ -110,12 +110,11 @@ const Tour360 = () => {
   return (
     <>
       {/* HERO */}
-      <header className="tour-hero text-white">
+      <header className="tour-hero">
         <div className="container">
-          <h1 className="display-5 fw-bold">360° Virtual Exploration</h1>
-          <p className="lead text-light mt-3">
+          <h1 className="display-5">360° Virtual Exploration</h1>
+          <p className="lead mt-3">
             Navigate through immersive panoramic views of Pazari i Ri.
-            <br />
             Click and drag to explore every corner of this historic marketplace.
           </p>
         </div>
@@ -173,8 +172,12 @@ const Tour360 = () => {
                 </div>
               </div>
 
-              <div className="location-description">
-                {activeLocationObj.description}
+              <div className="location-description-container">
+                <div className="location-description-icon"></div> {/* Ikona e pikës */}
+                <div className="location-description-content">
+                  <h5 className="fw-bold">{activeLocationObj.title}</h5>
+                  <p>{activeLocationObj.description}</p>
+                </div>
               </div>
             </div>
 
@@ -190,12 +193,18 @@ const Tour360 = () => {
                   }`}
                   onClick={() => handleLocationClick(loc.title)}
                 >
-                  <h6>{loc.title}</h6>
-                  <small>{loc.hotspots.length} interactive points</small>
+                  <div className="location-thumb">
+                    <img src={loc.img} alt={loc.title} />
+                  </div>
+
+                  <div className="location-info">
+                    <h6 className="mb-1">{loc.title}</h6>
+                    <small>{loc.hotspots.length} interactive points</small>
+                  </div>
                 </div>
               ))}
 
-              <div className="navigation-tips mt-4 p-3 bg-dark text-white rounded">
+              <div className="navigation-tips mt-4 p-3 text-white rounded">
                 <h6>Navigation Tips</h6>
                 <ul>
                   <li>Drag to rotate the 360° view</li>

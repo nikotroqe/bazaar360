@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FiCalendar, FiClock, FiMapPin, FiUsers } from "react-icons/fi";
 import "./Events.css";
 
 const eventsData = [
@@ -6,8 +7,8 @@ const eventsData = [
     id: 1,
     category: "Festival",
     title: "Albanian Heritage Festival",
-    date: "October 25, 2025",
-    time: "10:00 AM – 6:00 PM",
+    date: new Date(2025, 9, 25),
+    time: "10:00 AM - 6:00 PM",
     location: "Main Square, Pazari i Ri",
     attendees: 500,
     description:
@@ -18,8 +19,8 @@ const eventsData = [
     id: 2,
     category: "Workshop",
     title: "Artisan Workshop Series",
-    date: "October 28, 2025",
-    time: "2:00 PM – 5:00 PM",
+    date: new Date(2025, 9, 28),
+    time: "2:00 PM - 5:00 PM",
     location: "Artisan Corner",
     attendees: 30,
     description:
@@ -30,70 +31,49 @@ const eventsData = [
     id: 3,
     category: "Food",
     title: "Taste of Tirana Food Fair",
-    date: "November 2, 2025",
-    time: "12:00 PM – 8:00 PM",
+    date: new Date(2025, 10, 2),
+    time: "12:00 PM - 8:00 PM",
     location: "Central Plaza",
     attendees: 800,
     description:
       "Sample authentic Albanian cuisine from the best vendors at Pazari i Ri.",
     img: "https://images.unsplash.com/photo-1761910932253-e2f8b2bc2f9a",
-    extra: true,
   },
 ];
 
+const categories = ["All Events", "Festival", "Workshop", "Food Events", "Markets"];
+
 const Events = () => {
-  // === Calendar State ===
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState("All Events");
+  const [viewMode, setViewMode] = useState("list");
 
-  // === Load More State ===
-  const [showExtra, setShowExtra] = useState(false);
+  const daysInMonth = (date) =>
+    new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
-  const daysInMonth = (date) => new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
-  const firstDayOfMonth = (date) => new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+  const firstDayOfMonth = (date) =>
+    new Date(date.getFullYear(), date.getMonth(), 1).getDay();
 
-  const handlePrevMonth = () => setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() - 1)));
-  const handleNextMonth = () => setCurrentDate(new Date(currentDate.setMonth(currentDate.getMonth() + 1)));
+  const handlePrevMonth = () =>
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1)
+    );
+
+  const handleNextMonth = () =>
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1)
+    );
 
   const handleDayClick = (day) => {
-    setSelectedDay(new Date(currentDate.getFullYear(), currentDate.getMonth(), day));
+    setSelectedDay(
+      new Date(currentDate.getFullYear(), currentDate.getMonth(), day)
+    );
   };
 
-  const renderCalendar = () => {
-    const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
-    const firstDay = firstDayOfMonth(currentDate);
-    const days = daysInMonth(currentDate);
-    const prevMonthDays = new Date(year, month, 0).getDate();
-
-    const calendarRows = [];
-    let dayCount = 1;
-
-    // First row
-    const firstRow = [];
-    for (let i = firstDay - 1; i >= 0; i--) {
-      firstRow.push(
-        <td key={"prev-" + i} className="muted">
-          {prevMonthDays - i}
-        </td>
-      );
-    }
-    for (let i = firstDay; i < 7; i++) {
-      firstRow.push(renderDayCell(dayCount++));
-    }
-    calendarRows.push(<tr key="row-0">{firstRow}</tr>);
-
-    let rowIndex = 1;
-    while (dayCount <= days) {
-      const row = [];
-      for (let i = 0; i < 7 && dayCount <= days; i++) {
-        row.push(renderDayCell(dayCount++));
-      }
-      calendarRows.push(<tr key={"row-" + rowIndex}>{row}</tr>);
-      rowIndex++;
-    }
-
-    return calendarRows;
+  const handleCategoryClick = (cat) => {
+    setSelectedCategory(cat);
+    setSelectedDay(null);
   };
 
   const renderDayCell = (day) => {
@@ -112,7 +92,9 @@ const Events = () => {
     return (
       <td
         key={day}
-        className={`${isToday ? "today" : ""} ${isSelected ? "active-day" : ""}`}
+        className={`${isToday ? "today" : ""} ${
+          isSelected ? "active-day" : ""
+        }`}
         onClick={() => handleDayClick(day)}
       >
         {day}
@@ -120,36 +102,93 @@ const Events = () => {
     );
   };
 
+  const renderCalendar = () => {
+    const firstDay = firstDayOfMonth(currentDate);
+    const days = daysInMonth(currentDate);
+    const prevMonthDays = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      0
+    ).getDate();
+
+    const rows = [];
+    let dayCount = 1;
+
+    const firstRow = [];
+    for (let i = firstDay - 1; i >= 0; i--) {
+      firstRow.push(
+        <td key={"prev-" + i} className="muted">
+          {prevMonthDays - i}
+        </td>
+      );
+    }
+
+    for (let i = firstDay; i < 7; i++) {
+      firstRow.push(renderDayCell(dayCount++));
+    }
+
+    rows.push(<tr key="row-0">{firstRow}</tr>);
+
+    let rowIndex = 1;
+    while (dayCount <= days) {
+      const row = [];
+      for (let i = 0; i < 7 && dayCount <= days; i++) {
+        row.push(renderDayCell(dayCount++));
+      }
+      rows.push(<tr key={"row-" + rowIndex}>{row}</tr>);
+      rowIndex++;
+    }
+
+    return rows;
+  };
+
+  const filteredEvents = eventsData.filter((event) => {
+    if (
+      selectedCategory !== "All Events" &&
+      event.category !== selectedCategory
+    )
+      return false;
+
+    if (!selectedDay) return true;
+
+    return (
+      event.date.getDate() === selectedDay.getDate() &&
+      event.date.getMonth() === selectedDay.getMonth() &&
+      event.date.getFullYear() === selectedDay.getFullYear()
+    );
+  });
+
   return (
     <div>
-      {/* HERO */}
-      <header className="events-hero text-white text-center">
+      <header className="events-hero">
         <div className="container">
-          <h1 className="fw-bold">Cultural Events & Calendar</h1>
-          <p className="lead">
-            Stay connected with the vibrant community life at Pazari i Ri. From festivals to workshops, never
-            miss a moment.
-          </p>
+          <h1 className="display-5">Cultural Events & Calendar</h1>
+          <p className="lead mt-3">Stay connected with the vibrant community life at Pazari i Ri. From festivals to workshops, never miss a moment.</p>
         </div>
       </header>
 
-      {/* MAIN */}
       <section className="py-5">
         <div className="container">
           <div className="row g-4">
+
             {/* SIDEBAR */}
-            <aside className="col-lg-3">
-              <div className="sidebar-box mb-4 calendar-box">
+            <aside className="aside-sidebar col-lg-3">
+              <div className="sidebar-box mb-4">
                 <h6 className="fw-bold mb-3">Select Date</h6>
 
-                <div className="d-flex justify-content-between align-items-center mb-2 calendar-header">
-                  <button className="btn btn-sm btn-light" onClick={handlePrevMonth}>
+                <div className="calendar-header d-flex align-items-center justify-content-between mb-2">
+                  <button onClick={handlePrevMonth} className="calendar-nav-btn">
                     &lsaquo;
                   </button>
-                  <strong>
-                    {currentDate.toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+
+                  <strong className="calendar-current">
+                    {currentDate.toLocaleDateString("en-US", {
+                      month: "long",
+                      year: "numeric",
+                    })}
                   </strong>
-                  <button className="btn btn-sm btn-light" onClick={handleNextMonth}>
+
+                  <button onClick={handleNextMonth} className="calendar-nav-btn">
                     &rsaquo;
                   </button>
                 </div>
@@ -172,56 +211,105 @@ const Events = () => {
 
               <div className="sidebar-box">
                 <h6 className="fw-bold mb-3">Categories</h6>
-                <ul className="list-unstyled category-list">
-                  <li>All Events</li>
-                  <li>Festivals</li>
-                  <li>Workshops</li>
-                  <li>Food Events</li>
-                  <li>Markets</li>
+                <ul className="category-list">
+                  {categories.map((cat, idx) => (
+                    <li
+                      key={idx}
+                      className={
+                        selectedCategory === cat ? "active-category" : ""
+                      }
+                      onClick={() => handleCategoryClick(cat)}
+                    >
+                      {cat}
+                    </li>
+                  ))}
                 </ul>
               </div>
             </aside>
 
-            {/* EVENTS LIST */}
-            <main className="col-lg-9">
+            {/* EVENTS */}
+            <main className="main-side col-lg-9">
+
               <div className="d-flex justify-content-between align-items-center mb-4">
-                <h3 className="fw-bold mb-0">Upcoming Events</h3>
-                <div>
-                  <button className="btn btn-dark btn-sm">List View</button>
-                  <button className="btn btn-outline-dark btn-sm">Grid View</button>
+                <h3 className="mb-0">Upcoming Events</h3>
+
+                <div className="view-toggle-buttons d-flex gap-2">
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={viewMode === "list" ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm"}
+                  >
+                    List View
+                  </button>
+
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={viewMode === "grid" ? "btn btn-dark btn-sm" : "btn btn-outline-dark btn-sm"}
+                  >
+                    Grid View
+                  </button>
                 </div>
               </div>
 
-              {eventsData.map((event) => {
-                if (event.extra && !showExtra) return null;
-                return (
-                  <div className="event-list-item mb-4" key={event.id}>
-                    <img src={event.img} alt={event.title} />
-                    <div className="event-info">
-                      <span className="badge bg-secondary mb-2">{event.category}</span>
-                      <h4>{event.title}</h4>
-                      <p className="text-muted mb-2">
-                        📅 {event.date} &nbsp; ⏰ {event.time}
-                        <br />
-                        📍 {event.location} &nbsp; 👥 {event.attendees} attending
-                      </p>
-                      <p>{event.description}</p>
-                      <div className="d-flex gap-2">
-                        <button className="btn btn-danger">Reserve Spot →</button>
-                        <button className="btn btn-outline-secondary">Details</button>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-
-              {eventsData.some((e) => e.extra) && !showExtra && (
-                <div className="text-center mt-4">
-                  <button className="btn btn-outline-secondary px-4" onClick={() => setShowExtra(true)}>
-                    Load More Events
-                  </button>
+              {selectedDay && filteredEvents.length === 0 && (
+                <div className="alert alert-warning">
+                  {selectedDay < new Date()
+                    ? "This date has already passed."
+                    : "No events scheduled for this date."}
                 </div>
               )}
+
+              <div className={viewMode === "grid" ? "row g-4" : ""}>
+                {filteredEvents.map((event) =>
+                  viewMode === "grid" ? (
+                    <div className="col-md-6" key={event.id}>
+                      <div className="event-grid-card">
+                        <img src={event.img} alt={event.title} />
+
+                        <div className="p-3">
+                          <span className="badge bg-secondary">{event.category}</span>
+                          <h5 className="mt-2">{event.title}</h5>
+                          <p>{event.description}</p>
+
+                          <p className="event-meta">
+                            <FiCalendar /> {event.date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}<br />
+                            <FiClock /> {event.time}<br />
+                            <FiMapPin /> {event.location}<br />
+                            <FiUsers /> {event.attendees} attending
+                          </p>
+
+                          <div className="d-flex gap-2 mt-2">
+                            <button className="btn btn-danger">Reserve Spot →</button>
+                            <button className="btn btn-outline-secondary">Details</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="event-list-item mb-4" key={event.id}>
+                      <img src={event.img} alt={event.title} />
+
+                      <div className="event-info">
+                        <span className="badge bg-secondary mb-2">{event.category}</span>
+                        <h4>{event.title}</h4>
+                        <p>{event.description}</p>
+
+                        <p className="event-meta">
+                          <FiCalendar /> {event.date.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}<br />
+                          <FiClock /> {event.time}<br />
+                          <FiMapPin /> {event.location}<br />
+                          <FiUsers /> {event.attendees} attending
+                        </p>
+
+                        <div className="d-flex gap-2">
+                          <button className="btn btn-danger">Reserve Spot →</button>
+                          <button className="btn btn-outline-secondary">Details</button>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+
             </main>
           </div>
         </div>

@@ -1,7 +1,7 @@
 .contact-hero {
   height: 45vh;
   background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee")
+    url("https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1c/c1/2a/3f/the-bazaar-represented.jpg?w=1200&h=1200&s=1")
     center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -11,4 +11,33 @@
   background: #fff;
   border: 1px solid #ddd;
   padding: 30px;
+  border-radius: 10px;
+}
+
+.contact-info-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start; /* Teksti nis nga maja e ikonës */
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  margin-right: 20px; /* Kjo krijon hapësirë më të madhe me tekstin */
+}
+
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+
+textarea.form-control {
+  resize: none; /* Heq mundësinë e tërheqjes së textarea */
 }

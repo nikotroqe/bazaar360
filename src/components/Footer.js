@@ -55,12 +55,12 @@ const Footer = () => {
             <h5 className="fw-semibold">About</h5>
             <ul className="list-unstyled small mt-2">
               <li className="mb-2">
-                <Link to="/ar-stories" className="text-light text-decoration-none">
+                <Link to="/about" className="text-light text-decoration-none">
                   Our Mission
                 </Link>
               </li>
               <li className="mb-2">
-                <Link to="/map" className="text-light text-decoration-none">
+                <Link to="/ar_stories" className="text-light text-decoration-none">
                   Cultural Heritage
                 </Link>
               </li>

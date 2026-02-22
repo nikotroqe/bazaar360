@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Map.css";
+import { FaStore, FaCoffee, FaShoppingBag, FaUtensils } from "react-icons/fa";
 
+// -------------------- LOCATIONS --------------------
 const LOCATIONS = [
   {
     name: "Traditional Pottery Shop",
@@ -8,8 +10,8 @@ const LOCATIONS = [
     desc: "Authentic Albanian ceramics and pottery",
     hours: "9:00 AM - 6:00 PM",
     image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261",
-    icon: "🏺",
     type: "shop",
+    icon: <FaShoppingBag />, 
     top: "25%",
     left: "30%",
   },
@@ -19,8 +21,8 @@ const LOCATIONS = [
     desc: "Local coffee in the heart of Pazari",
     hours: "7:00 AM - 10:00 PM",
     image: "https://images.unsplash.com/photo-1509042239860-f550ce710b93",
-    icon: "☕",
     type: "cafe",
+    icon: <FaCoffee />,
     top: "37%",
     left: "38%",
   },
@@ -30,8 +32,8 @@ const LOCATIONS = [
     desc: "Handmade textiles and crafts",
     hours: "8:00 AM - 5:00 PM",
     image: "https://images.unsplash.com/photo-1528698827591-e19ccd7bc23d",
-    icon: "🛍️",
     type: "market",
+    icon: <FaStore />,  
     top: "49%",
     left: "46%",
   },
@@ -41,8 +43,8 @@ const LOCATIONS = [
     desc: "Traditional Albanian cuisine",
     hours: "11:00 AM - 11:00 PM",
     image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092",
-    icon: "🍽️",
     type: "restaurant",
+    icon: <FaUtensils />,  
     top: "61%",
     left: "54%",
   },
@@ -52,8 +54,8 @@ const LOCATIONS = [
     desc: "Handcrafted copper souvenirs",
     hours: "9:00 AM - 6:00 PM",
     image: "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-    icon: "⚒️",
     type: "shop",
+    icon: <FaShoppingBag />,
     top: "73%",
     left: "62%",
   },
@@ -63,31 +65,58 @@ const LOCATIONS = [
     desc: "Fresh coffee every morning",
     hours: "7:00 AM - 9:00 PM",
     image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
-    icon: "☕",
     type: "cafe",
+    icon: <FaCoffee />,
     top: "85%",
     left: "70%",
   },
 ];
 
-export default function Map() {
+// -------------------- CATEGORY COUNTS --------------------
+const CATEGORY_COUNTS = {
+  All: 45,
+  Shops: 18,
+  Cafes: 12,
+  Restaurants: 10,
+  Markets: 5,
+};
+
+// -------------------- MAP COMPONENT --------------------
+function Map() {
   const [active, setActive] = useState(null);
   const [search, setSearch] = useState("");
   const [zoom, setZoom] = useState(1);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const filtered = LOCATIONS.filter(
     (l) =>
-      l.name.toLowerCase().includes(search.toLowerCase()) ||
-      l.category.toLowerCase().includes(search.toLowerCase())
+      (l.name.toLowerCase().includes(search.toLowerCase()) ||
+        l.category.toLowerCase().includes(search.toLowerCase())) &&
+      (selectedCategory
+        ? l.category.toLowerCase() === selectedCategory
+        : true)
   );
+
+  const handleCategoryClick = (category) => {
+    if (category === "All") {
+      setSelectedCategory(""); 
+    } else {
+      setSelectedCategory(
+        category.toLowerCase() === selectedCategory
+          ? ""
+          : category.toLowerCase()
+      );
+    }
+    setSearch(""); 
+  };
 
   return (
     <>
       {/* HERO */}
-      <header className="map-hero text-white text-center">
+      <header className="map-hero">
         <div className="container">
-          <h1 className="fw-bold">Interactive Bazaar Map</h1>
-          <p className="lead">Find shops, cafés and landmarks at Pazari i Ri</p>
+          <h1 className="fw-bold">Interactive Location Map</h1>
+          <p className="lead">Navigate Pazari i Ri with ease. Find shops, cafes, restaurants, and landmarks throughout the bazaar.</p>
         </div>
       </header>
 
@@ -95,19 +124,16 @@ export default function Map() {
       <section className="py-5 bg-white">
         <div className="container">
           <div className="row g-4">
-
             {/* MAP */}
             <div className="col-lg-8">
-
-              {/* SEARCH */}
               <div className="mb-3 position-relative">
                 <input
-                  className="form-control ps-5"
+                  className="form-control input-search ps-5"
                   placeholder="Search locations..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <span className="search-icon">🔍</span>
+                <span className="search-icon"></span>
               </div>
 
               <div className="map-container">
@@ -134,7 +160,6 @@ export default function Map() {
                 </div>
               </div>
 
-              {/* INFO PANEL */}
               {active && (
                 <div className="location-panel mt-4">
                   <button className="panel-close" onClick={() => setActive(null)}>×</button>
@@ -155,24 +180,47 @@ export default function Map() {
             {/* SIDEBAR */}
             <div className="col-lg-4">
               <div className="sidebar-box">
+                <h5 className="fw-bold mb-3">Categories</h5>
+                <ul className="category-list">
+                  {["All", "Shops", "Cafes", "Restaurants", "Markets"].map(
+                    (category, idx) => (
+                      <li
+                        key={idx}
+                        className={selectedCategory === category.toLowerCase() ? "active-category" : ""}
+                        onClick={() => handleCategoryClick(category)}
+                      >
+                        {category} 
+                        <span className="category-count">{CATEGORY_COUNTS[category]}</span>
+                      </li>
+                    )
+                  )}
+                </ul>
+              </div>
+
+              <div className="sidebar-box">
                 <h5 className="fw-bold mb-3">All Locations</h5>
                 <ul className="location-list">
-                  {filtered.map((l) => (
+                  {LOCATIONS.map((l) => (
                     <li
                       key={l.name}
                       className={`location-item ${active?.name === l.name ? "active" : ""}`}
                       onClick={() => setActive(l)}
                     >
-                      {l.icon} {l.name} <small>{l.category}</small>
+                     <div className="location-icon">{l.icon}</div>
+                      <div className="location-text">
+                        <span className="location-name">{l.name}</span>
+                        <small className="location-category">{l.category}</small>
+                      </div>
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-
           </div>
         </div>
       </section>
     </>
   );
 }
+
+export default Map;

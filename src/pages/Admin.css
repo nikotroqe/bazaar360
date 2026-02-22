@@ -7,13 +7,17 @@
    HEADER
 ========================= */
 .dashboard-hero {
-  padding: 34px 0;
+  padding: 50px 0;
   background: #000000;
 }
 
 .dashboard-hero h1 {
-  font-size: 1.8rem;
+  font-size: 2.3rem;
   color: white;
+}
+
+.dashboard-hero p {
+  color: rgb(149, 149, 149);
 }
 
 /* =========================
@@ -93,7 +97,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0px;
+  border-radius: 5px;
 }
 
 .stat-text {
@@ -135,7 +139,69 @@
 .list-item:last-child {
   border-bottom: none;
 }
+.list-item {
+  padding: 14px 0;
+  border-bottom: 1px solid #f1f1f1;
+}
 
+.story-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.story-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.story-author {
+  font-size: 0.8rem;
+}
+
+.status-published {
+  background-color: #e6f4ea;
+  color: #198754;
+}
+
+.status-draft {
+  background-color: #f1f1f1;
+  color: #6c757d;
+}
+
+/*Top Locations*/
+
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.location-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.location-type {
+  font-size: 0.8rem;
+}
+
+.location-visits {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.visits-number {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.visits-label {
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
 /* =========================
    STATUS BADGES
 ========================= */
@@ -237,6 +303,10 @@
 
 .action-icons i:hover {
   opacity: 0.6;
+}
+
+.event-icon{
+  font-size: 40px;
 }
 
 /* =========================

@@ -24,7 +24,10 @@ import SignUp from "./register/SignUp";
 const App = () => {
   return (
     <Router>
-      <Navbar /> {/* Navbar shfaqet gjithmonë */}
+      <div style={{margin: 60}}>
+        <Navbar /> {/* Navbar shfaqet gjithmonë */}
+      </div>
+      
 
       <Routes>
         <Route path="/home" element={<Home />} />

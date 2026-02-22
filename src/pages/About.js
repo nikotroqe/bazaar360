@@ -22,17 +22,15 @@ const About = () => {
           
           <div className="about-flex">
             <div className="about-text">
-              <p>
-                n'Bazaar360 is a digital cultural initiative developed within the
-                Web Challenge program, supported by the Municipality of Tirana.
-                The platform reimagines Pazari i Ri through immersive 360° tours
-                and AR experiences.
+               <p>
+                Bazaar360 is an innovative digital initiative that brings Pazari i Ri in Tirana into the virtual realm.
+                This platform allows citizens and tourists to explore this iconic market from anywhere and at any time.
+                We also aim to promote authentic products from local artisans, farmers, and small businesses, with a special focus on international visitors.
               </p>
 
               <p>
-                Designed as a next-generation cultural platform, n'Bazaar360 allows
-                locals and international visitors to explore the market beyond
-                physical presence—discovering its stories, artisans, and products.
+                By using immersive 360° tours and augmented reality, we reimagine the market experience, offering a digital window into its vibrant culture.
+                Each store and artisan is equipped with a unique QR code that visitors can scan to access business profiles, additional information, and even augmented product demonstrations.
               </p>
             </div>
 
@@ -44,12 +42,25 @@ const About = () => {
             </div>
           </div>
           
+          {/* Mission */}
+          <h3 className="mt-5 fw-semibold">Our Mission</h3>
+          <p>
+            Our mission is to digitally transform the iconic Pazari i Ri in Tirana by providing both locals and tourists with the opportunity to explore its vibrant culture through immersive 360° experiences.
+            We aim to promote authentic products from local artisans, farmers, and small enterprises, with a special focus on attracting foreign tourists. Through innovative technology and virtual reality, we bring the market closer to people, anytime and anywhere.
+          </p>
+
           {/* Vision */}
           <h3 className="mt-5 fw-semibold">Our Vision</h3>
           <p>
-            To position Tirana as a forward-thinking and culturally rich city by digitally
-            preserving and promoting its urban heritage, enhancing tourism experiences, and
-            empowering local artisans through innovative technology.
+            Our vision is to become a leading digital platform that connects people with Tirana’s rich cultural heritage. By integrating augmented reality and virtual tours, we enhance the way visitors interact with local businesses, artisans, and traditions.
+            We strive to create an engaging and accessible space that allows users to experience the beauty and craftsmanship of Tirana’s Bazaar from anywhere in the world, all while supporting the local economy and preserving cultural heritage.
+          </p>
+
+          {/* Objectives */}
+          <h3 className="mt-5 fw-semibold">Our Objectives</h3>
+          <p>
+            Our objective is to provide a seamless digital experience that connects visitors with the heart of Pazari i Ri. Each shop and artisan will feature unique QR codes, allowing visitors to access digital profiles, product demonstrations, videos, and additional information through augmented reality.
+            We aim to empower local businesses by enhancing their visibility and fostering direct connections with international audiences, all while promoting sustainable tourism and cultural engagement.
           </p>
 
           {/* What We Offer */}
@@ -98,7 +109,7 @@ const About = () => {
 
           </div>
 
-          {/* Impact */}
+          {/* Impact 
           <h3 className="mt-5 fw-semibold">Cultural & Community Impact</h3>
           <p>
             n’Bazaar360 strengthens Tirana's cultural identity by documenting crafts,
@@ -113,14 +124,14 @@ const About = () => {
             Tirana’s cultural heritage.
           </p>
 
-          {/* Looking Ahead */}
+          Looking Ahead
           <h3 className="mt-5 fw-semibold">Looking Ahead</h3>
           <p>
             Built as a scalable digital ecosystem, n'Bazaar360 is designed to expand across
             multiple cultural zones, support multilingual audiences, and evolve with emerging
             technologies such as advanced augmented reality and virtual reality—shaping the
             future of how cities tell their stories.
-          </p>
+          </p>*/}
 
         </div>
       </section>
