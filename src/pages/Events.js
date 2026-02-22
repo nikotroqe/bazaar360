@@ -25,7 +25,7 @@ const eventsData = [
     attendees: 30,
     description:
       "Learn traditional crafts directly from master artisans. Limited spots available.",
-    img: "https://images.unsplash.com/photo-1567013770464-15058f5808c7",
+    img: "https://thumbs.dreamstime.com/b/tirana-albania-pazari-i-ri-bazaar-together-neighbourhood-mujo-located-one-oldest-areas-tirana-329636772.jpg",
   },
   {
     id: 3,
@@ -37,7 +37,7 @@ const eventsData = [
     attendees: 800,
     description:
       "Sample authentic Albanian cuisine from the best vendors at Pazari i Ri.",
-    img: "https://images.unsplash.com/photo-1761910932253-e2f8b2bc2f9a",
+    img: "https://mindtrip.ai/attractions/0b45/94fe/13fb/4c38/fac8/c715/b547/2032",
   },
 ];
 
