@@ -185,7 +185,7 @@ useEffect(() => {
             <div className="col-md-6">
               <div className="feature-box">
                 <img
-                  src="https://images.unsplash.com/photo-1623851277328-fca6cd2b8eec?q=80&w=1200"
+                  src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQcCHulw8sThRUr5IL9DTiVXZ069vsA2pZkFnvQVzLTWu5oy2N9"
                   alt="Map"
                   className="img-fluid"
                 />
