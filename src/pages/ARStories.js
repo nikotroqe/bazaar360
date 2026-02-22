@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./ARStories.css";
 
 const ARStories = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedArtisan, setSelectedArtisan] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const artisans = [
     {
@@ -72,8 +73,22 @@ const ARStories = () => {
     setModalOpen(false);
   };
 
+  useEffect(() => {
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 300);
+  
+      return () => clearTimeout(timer);
+    }, []);
+
   return (
     <>
+      {/* LOADING OVERLAY */}
+      {loading && (
+        <div className="page-loading">
+          <div className="spinner"></div>
+        </div>
+      )}
       {/* HERO */}
       <header className="ar-hero d-flex align-items-center">
         <div className="container ar-badge text-white">

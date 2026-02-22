@@ -1,9 +1,26 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./About.css";
 
 const About = () => {
+  const [loading, setLoading] = useState(true); // spinner fillestar
+
+  useEffect(() => {
+    // Kur komponenti mount-et, shfaq spinner për 0.3s
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 300); // 0.3 sekonda, mund ta rrisësh në 500ms nëse do më smooth
+
+    return () => clearTimeout(timer);
+  }, []); // [] = ekzekutohet vetëm një herë kur mount-et komponenti
+
   return (
     <>
+    {/* LOADING OVERLAY */}
+      {loading && (
+        <div className="page-loading">
+          <div className="spinner"></div>
+        </div>
+      )}
       {/* PAGE HEADER */}
       <header className="bg-dark text-white">
         <div className="container">

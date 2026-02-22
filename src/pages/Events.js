@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FiCalendar, FiClock, FiMapPin, FiUsers } from "react-icons/fi";
 import "./Events.css";
 
@@ -48,6 +48,7 @@ const Events = () => {
   const [selectedDay, setSelectedDay] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("All Events");
   const [viewMode, setViewMode] = useState("list");
+  const [loading, setLoading] = useState(true);
 
   const daysInMonth = (date) =>
     new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
@@ -158,8 +159,24 @@ const Events = () => {
     );
   });
 
+  useEffect(() => {
+        // Kur komponenti mount-et, shfaq spinner për 0.3s
+        const timer = setTimeout(() => {
+          setLoading(false);
+        }, 300); // 0.3 sekonda, mund ta rrisësh në 500ms nëse do më smooth
+    
+        return () => clearTimeout(timer);
+      }, []);
+  
+
   return (
     <div>
+      {/* LOADING OVERLAY */}
+      {loading && (
+        <div className="page-loading">
+          <div className="spinner"></div>
+        </div>
+      )}
       <header className="events-hero">
         <div className="container">
           <h1 className="display-5">Cultural Events & Calendar</h1>

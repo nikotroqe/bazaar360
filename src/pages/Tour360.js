@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Tour360.css";
 
 const Tour360 = () => {
@@ -8,6 +8,7 @@ const Tour360 = () => {
   const [dragging, setDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const viewerRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
   const locations = [
     {
@@ -106,9 +107,23 @@ const Tour360 = () => {
       else document.exitFullscreen();
     }
   };
+  useEffect(() => {
+      // Kur komponenti mount-et, shfaq spinner për 0.3s
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 300); // 0.3 sekonda, mund ta rrisësh në 500ms nëse do më smooth
+  
+      return () => clearTimeout(timer);
+    }, []);
 
   return (
     <>
+    {/* LOADING OVERLAY */}
+      {loading && (
+        <div className="page-loading">
+          <div className="spinner"></div>
+        </div>
+      )}
       {/* HERO */}
       <header className="tour-hero">
         <div className="container">
