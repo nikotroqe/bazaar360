@@ -40,7 +40,7 @@ const About = () => {
           <div className="about-flex">
             <div className="about-text">
                <p>
-                Bazaar360 is an innovative digital initiative that brings Pazari i Ri in Tirana into the virtual realm.
+                Bazaar360 is an innovative digital initiative that brings Pazari i Ri (The New Bazaar) in Tirana into the virtual realm.
                 This platform allows citizens and tourists to explore this iconic market from anywhere and at any time.
                 We also aim to promote authentic products from local artisans, farmers, and small businesses, with a special focus on international visitors.
               </p>
@@ -62,7 +62,7 @@ const About = () => {
           {/* Mission */}
           <h3 className="mt-5 fw-semibold">Our Mission</h3>
           <p>
-            Our mission is to digitally transform the iconic Pazari i Ri in Tirana by providing both locals and tourists with the opportunity to explore its vibrant culture through immersive 360° experiences.
+            Our mission is to digitally transform the iconic Pazari i Ri (The New Bazaar) in Tirana by providing both locals and tourists with the opportunity to explore its vibrant culture through immersive 360° experiences.
             We aim to promote authentic products from local artisans, farmers, and small enterprises, with a special focus on attracting foreign tourists. Through innovative technology and virtual reality, we bring the market closer to people, anytime and anywhere.
           </p>
 
@@ -88,7 +88,7 @@ const About = () => {
               <div className="offer-card">
                 <h5 className="fw-semibold">Immersive 360° Market Experience</h5>
                 <p>
-                  Explore Pazari i Ri through the first fully immersive virtual tour, capturing
+                  Explore Pazari i Ri (The New Bazaar) through the first fully immersive virtual tour, capturing
                   the atmosphere, architecture, and rhythm of daily life.
                 </p>
               </div>

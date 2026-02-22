@@ -41,7 +41,7 @@ const eventsData = [
   },
 ];
 
-const categories = ["All Events", "Festival", "Workshop", "Food Events", "Markets"];
+const categories = ["All Events", "Festival", "Workshop", "Food", "Markets"];
 
 const Events = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
