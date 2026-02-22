@@ -234,20 +234,20 @@ const Home = () => {
             >
               {featuredBusinesses.map((business, index) => (
                 <div key={index} className="slider-item">
-                  <div className="startup-card">
+                  <div className="business-card">
 
-                    <div className="startup-image">
+                    <div className="business-image">
                       <img src={business.image} alt={business.name} />
 
-                      <div className="startup-overlay">
-                        <div className="startup-logo">
+                      <div className="business-overlay">
+                        <div className="business-logo">
                           <img src={business.logo} alt="logo" />
                         </div>
-                        <h5 className="startup-title">{business.name}</h5>
+                        <h5 className="business-title">{business.name}</h5>
                       </div>
                     </div>
 
-                    <div className="startup-body">
+                    <div className="business-body">
                       <p>{business.description}</p>
                     </div>
 

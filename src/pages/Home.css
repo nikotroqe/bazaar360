@@ -30,6 +30,9 @@
   border-radius: 30px;
   font-size: 14px;
   backdrop-filter: blur(6px);
+  opacity: 0; 
+  /* Define the transition: animate the 'opacity' property over 0.5 seconds with an ease-in timing function */
+  transition: opacity 0.5s ease-in;
 }
 
 .hero-badge .dot {
@@ -170,7 +173,7 @@
 }
 
 /* CARD */
-.startup-card {
+.business-card {
   background: #fff;
   border-radius: 5px;
   overflow: hidden;
@@ -179,18 +182,18 @@
   height: 100%;
 }
 
-.startup-card:hover {
+.business-card:hover {
   transform: translateY(-5px);
 }
 
 /* IMAGE */
-.startup-image {
+.business-image {
   position: relative;
   height: 160px;
   overflow: hidden;
 }
 
-.startup-image img {
+.business-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -198,7 +201,7 @@
 
 
 /* OVERLAY FLEX */
-.startup-overlay {
+.business-overlay {
   position: absolute;
   bottom: 15px;
   left: 20px;
@@ -207,7 +210,7 @@
   gap: 12px;
   z-index: 2;
 }
-.startup-image::after {
+.business-image::after {
   content: "";
   position: absolute;
   inset: 0;
@@ -220,7 +223,7 @@
 }
 
 /* LOGO RRETHORE */
-.startup-logo {
+.business-logo {
   width: 60px;
   height: 60px;
   background: white;
@@ -232,7 +235,7 @@
   justify-content: center;
 }
 
-.startup-logo img {
+.business-logo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -240,23 +243,23 @@
 }
 
 /* TITLE */
-.startup-title {
+.business-title {
   color: white;
   font-weight: 600;
   margin: 0;
 }
 
 /* BODY */
-.startup-body {
+.business-body {
   padding: 50px 20px 25px 20px;
 }
 
-.startup-body h5 {
+.business-body h5 {
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.startup-body p {
+.business-body p {
   color: #666;
   font-size: 14px;
 }
@@ -316,4 +319,3 @@
     gap: 15px;
   }
 }
-

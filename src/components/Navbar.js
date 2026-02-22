@@ -8,7 +8,6 @@ const searchData = [
   { title: "360° Virtual Tour", description: "Immersive 360-degree exploration of the bazaar", category: "Experience", path: "/tour360" },
   { title: "AR Stories", description: "Augmented reality stories from the bazaar", category: "Stories", path: "/ar_stories" },
   { title: "Events Calendar", description: "Upcoming events and activities at the bazaar", category: "Events", path: "/events" },
-  { title: "Interactive Map", description: "Navigate the bazaar with our interactive map", category: "Navigation", path: "/map" },
   { title: "Admin Panel", description: "Manage content and settings", category: "Admin", path: "/admin" },
 ];
 
@@ -19,7 +18,6 @@ const Navbar = () => {
   const containerRef = useRef(null);
   const navigate = useNavigate();
 
-  // Filtron kërkimet
   const filteredResults = searchData.filter(item =>
     item.title.toLowerCase().includes(query.toLowerCase()) ||
     item.category.toLowerCase().includes(query.toLowerCase())
@@ -28,7 +26,7 @@ const Navbar = () => {
   const handleSelect = (item) => {
     setQuery("");
     setShowResults(false);
-    setMenuOpen(false); // Mbyll menu në mobile kur zgjedh
+    setMenuOpen(false);
     navigate(item.path);
   };
 
@@ -72,7 +70,6 @@ const Navbar = () => {
             <li className="nav-item"><NavLink to="/tour360" className={({ isActive }) => "nav-link" + (isActive ? " active-link" : "")}>360° Exploration</NavLink></li>
             <li className="nav-item"><NavLink to="/ar_stories" className={({ isActive }) => "nav-link" + (isActive ? " active-link" : "")}>AR Stories</NavLink></li>
             <li className="nav-item"><NavLink to="/events" className={({ isActive }) => "nav-link" + (isActive ? " active-link" : "")}>Events</NavLink></li>
-            <li className="nav-item"><NavLink to="/map" className={({ isActive }) => "nav-link" + (isActive ? " active-link" : "")}>Map</NavLink></li>
             <li className="nav-item"><NavLink to="/contact" className={({ isActive }) => "nav-link" + (isActive ? " active-link" : "")}>Contact</NavLink></li>
             <li className="nav-item"><NavLink to="/admin" className={({ isActive }) => "nav-link" + (isActive ? " active-link" : "")}>Admin</NavLink></li>
           </ul>
