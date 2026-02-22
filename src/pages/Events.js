@@ -160,10 +160,9 @@ const Events = () => {
   });
 
   useEffect(() => {
-        // Kur komponenti mount-et, shfaq spinner për 0.3s
         const timer = setTimeout(() => {
           setLoading(false);
-        }, 300); // 0.3 sekonda, mund ta rrisësh në 500ms nëse do më smooth
+        }, 300);
     
         return () => clearTimeout(timer);
       }, []);

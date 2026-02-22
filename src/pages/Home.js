@@ -125,7 +125,7 @@ useEffect(() => {
             <div className="col-md-6">
               <div className="feature-box">
                 <img
-                  src="https://images.unsplash.com/photo-1648501910342-5332f255c12b?q=80&w=1200"
+                  src="https://www.aadf.org/wp-content/uploads/2023/11/6-.jpg"
                   alt="360 Tours"
                   className="img-fluid"
                 />
@@ -145,7 +145,7 @@ useEffect(() => {
             <div className="col-md-6">
               <div className="feature-box">
                 <img
-                  src="https://images.unsplash.com/photo-1687294088443-f207b36b0469?q=80&w=1200"
+                  src="https://cdn.getyourguide.com/image/format%3Dauto%2Cfit%3Dcrop%2Cgravity%3Dcenter%2Cquality%3D60%2Cwidth%3D400%2Cheight%3D265%2Cdpr%3D2/tour_img/26dd8d5863d4ecb22c59f31063759d4ccf922715bb76e8376396d78e3ec61854.jpg"
                   alt="AR Stories"
                   className="img-fluid"
                 />
@@ -165,7 +165,7 @@ useEffect(() => {
             <div className="col-md-6">
               <div className="feature-box">
                 <img
-                  src="https://images.unsplash.com/photo-1580052040395-32c97dcb60de?q=80&w=1200"
+                  src="https://traveltipsbysilvia.com/wp-content/uploads/2024/08/img20240704125627.jpg"
                   alt="Events"
                   className="img-fluid"
                 />
