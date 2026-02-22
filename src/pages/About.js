@@ -125,31 +125,6 @@ const About = () => {
             </div>
 
           </div>
-
-          {/* Impact 
-          <h3 className="mt-5 fw-semibold">Cultural & Community Impact</h3>
-          <p>
-            n’Bazaar360 strengthens Tirana's cultural identity by documenting crafts,
-            traditions, and personal stories that risk being lost over time.
-            The platform provides the Municipality of Tirana with a scalable and replicable
-            digital model, adaptable to other historic and cultural areas of the city.
-          </p>
-
-          <p>
-            By integrating technology into a historic urban space, n'Bazaar360 contributes
-            to sustainable tourism, community engagement, and the long-term preservation of
-            Tirana’s cultural heritage.
-          </p>
-
-          Looking Ahead
-          <h3 className="mt-5 fw-semibold">Looking Ahead</h3>
-          <p>
-            Built as a scalable digital ecosystem, n'Bazaar360 is designed to expand across
-            multiple cultural zones, support multilingual audiences, and evolve with emerging
-            technologies such as advanced augmented reality and virtual reality—shaping the
-            future of how cities tell their stories.
-          </p>*/}
-
         </div>
       </section>
     </>

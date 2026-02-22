@@ -13,7 +13,7 @@ const eventsData = [
     attendees: 500,
     description:
       "Celebrate Albanian culture with traditional music, dance performances, and artisan demonstrations.",
-    img: "https://images.unsplash.com/photo-1580052040395-32c97dcb60de",
+    img: "https://images.unsplash.com/photo-1580052040395-32c97dcb60de?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM0fHx8ZW58MHx8fHx8",
   },
   {
     id: 2,
