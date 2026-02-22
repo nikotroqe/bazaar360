@@ -3,7 +3,7 @@
   height: 60vh;
   background:
     linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-    url("https://images.unsplash.com/photo-1687294088443-f207b36b0469")
+    url("https://cdn.getyourguide.com/image/format%3Dauto%2Cfit%3Dcrop%2Cgravity%3Dcenter%2Cquality%3D60%2Cwidth%3D400%2Cheight%3D265%2Cdpr%3D2/tour_img/26dd8d5863d4ecb22c59f31063759d4ccf922715bb76e8376396d78e3ec61854.jpg")
     center / cover no-repeat;
   margin-top: 0;
   display: flex;
